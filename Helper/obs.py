@@ -7,7 +7,7 @@ import os
 # ------------------------------------------------------------------
 # ----------- Global Variables: Change it to your liking -----------
 # ------------------------------------------------------------------
-SCENE_NAME = "Yuri" # Name of the Scene where the Yuri spawn
+SCENE_NAME = "Yuri" # Name of the Scene where the Yuri spawns
 IMAGE_LIFETIME = 10  # How long until the Image disappears
 PASSWORD = os.getenv("OBS_PASSWORD") # Your OBS Password
 
@@ -94,7 +94,7 @@ def cleanup_old_sources(client):
 # ----- Testing -----
 if __name__ == '__main__':
     client = connect_to_obs()
-    spawn_yuri_image(client, "images/7105120.jpeg") # Get path with yuri code later
+    spawn_yuri_image(client, "images/7105120.jpeg")
     print(active_sources)
     time.sleep(5)
     cleanup_old_sources(client)
