@@ -1,0 +1,4 @@
+obsws-python
+twitchAPI
+python-dotenv
+requests
