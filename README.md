@@ -1,6 +1,6 @@
 # Yuri OBS Bot
 
-An app which randomly chooses (Yuri) images and shows them in OBS on certain Twitch events ^^
+An app which randomly chooses (Yuri) images from Safebooru and shows them in OBS on certain Twitch events ^^
 
 Currently on Twitch **follow** events, since I'm not Twitch Partner/Affiliate yet :P
 
