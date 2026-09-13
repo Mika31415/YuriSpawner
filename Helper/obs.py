@@ -13,7 +13,7 @@ PASSWORD = os.getenv("OBS_PASSWORD")
 if not PASSWORD:
     raise ValueError("OBS_PASSWORD missing in .env!")
 
-SCENE_NAME = "Yuri"
+SCENE_NAME = "Yuri" # Name of the Scene where the Yuri spawn
 IMAGE_LIFETIME = 10  # How long until the Image disappears
 
 active_sources = {}  # {source_name: spawn_timestamp}
@@ -91,7 +91,7 @@ def cleanup_old_sources(client):
 # ----- Testing -----
 if __name__ == '__main__':
     client = connect_to_obs()
-    spawn_yuri_image(client, "temp_images/7103851.jpeg") # Get path with yuri code later
+    spawn_yuri_image(client, "temp_images/7101745.gif") # Get path with yuri code later
     print(active_sources)
     time.sleep(5)
     cleanup_old_sources(client)

@@ -46,7 +46,7 @@ def extract_image_url(post):
     return post.get("sample_url") or post.get("file_url")
 
 # ----- Download the Image for OBS and save it in the "temp_images" Folder -----
-def download_image(url, post_id, save_path="temp_images/"):
+def download_image(url, post_id, save_path="images/"):
     try:
         os.makedirs(save_path, exist_ok=True)
         response = requests.get(url, timeout=10)
@@ -74,7 +74,7 @@ def get_random_yuri_image(posts):
 # ----- Testing -----
 if __name__ == '__main__':
     posts = search_images() # Should run about every 10 Minutes 
-    for i in range(25):
+    for i in range(10):
         print(f"---------- {i + 1} ----------")
         path = get_random_yuri_image(posts)
         print(path)
