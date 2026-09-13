@@ -1,22 +1,25 @@
 # ----- Modules -----
-from dotenv import load_dotenv
 import obsws_python as obs
 import random
 import time
 import os
 
-# ----- Global Variables -----
-HOST = "localhost"
-PORT = 4455
-load_dotenv(".env")
-PASSWORD = os.getenv("OBS_PASSWORD")
-if not PASSWORD:
-    raise ValueError("OBS_PASSWORD missing in .env!")
-
+# ------------------------------------------------------------------
+# ----------- Global Variables: Change it to your liking -----------
+# ------------------------------------------------------------------
 SCENE_NAME = "Yuri" # Name of the Scene where the Yuri spawn
 IMAGE_LIFETIME = 10  # How long until the Image disappears
+PASSWORD = os.getenv("OBS_PASSWORD") # Your OBS Password
 
+HOST = "localhost" # Your OBS Host (Base = localhost)
+PORT = 4455 # Your OBS Port (Base = 4455)
+# ------------------------------------------------------------------
+
+# ----- Global Variables: Fix, dont change -----
 active_sources = {}  # {source_name: spawn_timestamp}
+
+if not PASSWORD:
+    raise ValueError("OBS_PASSWORD missing in .env!")
 
 # ----- Connect to OBS -----
 def connect_to_obs():
@@ -91,7 +94,7 @@ def cleanup_old_sources(client):
 # ----- Testing -----
 if __name__ == '__main__':
     client = connect_to_obs()
-    spawn_yuri_image(client, "temp_images/7101745.gif") # Get path with yuri code later
+    spawn_yuri_image(client, "images/7105120.jpeg") # Get path with yuri code later
     print(active_sources)
     time.sleep(5)
     cleanup_old_sources(client)

@@ -8,11 +8,15 @@ import Helper.yuri as yuri
 import Helper.obs as obs
 import Helper.twitch as twitch
 
-# ----- Global Variables -----
-GET_POSTS_INTERVAL = 600 # Get new Posts every 10 Min
-CLEANUP_INTERAL = 2 # Check every 2 Sec if Images are too old
+# ------------------------------------------------------------------
+# ----------- Global Variables: Change it to your liking -----------
+# ------------------------------------------------------------------
+GET_POSTS_INTERVAL = 600 # Get new Posts every X Sec
+CLEANUP_INTERAL = 2 # Check every X Sec if Images are too old
 IMAGES_PER_REDEEM = 10 # Spawn X Images on every Redeem (Follow rn)
+# ------------------------------------------------------------------
 
+# ----- Global Variables: Fix, dont change -----
 posts = []
 obs_client = None
 

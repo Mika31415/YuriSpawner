@@ -3,9 +3,13 @@ import requests
 import random
 import os
 
-# ----- Global Variables -----
-TAGS = ["yuri"]
+# ------------------------------------------------------------------
+# ----------- Global Variables: Change it to your liking -----------
+# ------------------------------------------------------------------
+TAGS = ["yuri"] # The Tags for every Image (yuri, yaoi, 2girls, etc)
+# ------------------------------------------------------------------
 
+# ----- Global Variables: Fix, dont change -----
 images_ids = set()
 
 # ----- Fetch the Posts from Safebooru -----

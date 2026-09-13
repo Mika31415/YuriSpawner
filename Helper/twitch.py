@@ -7,11 +7,16 @@ from twitchAPI.object.eventsub import ChannelFollowEvent
 from twitchAPI.helper import first
 import os
 
-# ----- Global Variables -----
-APP_ID = os.getenv("TWITCH_CLIENT_ID")
-APP_SECRET = os.getenv("TWITCH_CLIENT_SECRET")
-TARGET_SCOPES = [AuthScope.MODERATOR_READ_FOLLOWERS] 
-USERNAME = "mika31415"
+# -----------------------------------------------------------------------
+# ------------- Global Variables: Change it to your liking --------------
+# -----------------------------------------------------------------------
+APP_ID = os.getenv("TWITCH_CLIENT_ID") # Your App ID
+APP_SECRET = os.getenv("TWITCH_CLIENT_SECRET") # Your Hidden App Token
+TARGET_SCOPES = [AuthScope.MODERATOR_READ_FOLLOWERS] # Your Twitch Events
+USERNAME = "mika31415" # Your Twitch Username
+
+USE_MOCK = False  # If True, Mock Test Server | If False, real Twitch
+# -----------------------------------------------------------------------
 
 # ----- Login for the Twitch API ----- 
 async def authenticate():
@@ -32,16 +37,28 @@ async def on_follow(data: ChannelFollowEvent):
 
 # ----- Start the event loop -----
 async def start_eventsub(twitch, broadcaster_id, callback):
-    eventsub = EventSubWebsocket(twitch)
+    if USE_MOCK:
+        eventsub = EventSubWebsocket(
+            twitch,
+            connection_url="ws://127.0.0.1:8080/ws",
+            subscription_url="http://127.0.0.1:8080/"
+        )
+    else:
+        eventsub = EventSubWebsocket(twitch)
+
     eventsub.start()
-    await eventsub.listen_channel_follow_v2(broadcaster_id, broadcaster_id, callback)
+    sub_id = await eventsub.listen_channel_follow_v2(broadcaster_id, broadcaster_id, callback)
+
+    if USE_MOCK:
+        print(f"twitch event trigger channel.follow -t {broadcaster_id} -u {sub_id} -T websocket")
+
     return eventsub
 
 # ----- Combine everything in 1 single Function -----
 async def main():
     twitch = await authenticate()
-    broadcaster_id = await get_broadcaster_id(twitch, USERNAME)
-    eventsub = await start_eventsub(twitch, broadcaster_id, on_follow)
+    broadcaster_id = await get_broadcaster_id(twitch, USERNAME, on_follow)
+    eventsub = await start_eventsub(twitch, broadcaster_id)
     
     try:
         input("Press enter to stop...\n")
